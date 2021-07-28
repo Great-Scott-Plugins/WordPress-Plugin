@@ -17,17 +17,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package     GSPWordPressPlugin
+ * @package     GreatScottPlugins
  * @category    Core
  * @author      GreatScottPlugins
  * @copyright   Copyright (c) 2021 GreatScottPlugins. All rights reserved.
  **/
 
-namespace GSPWordPressPlugin;
+namespace GreatScottPlugins\Plugin;
 
 /**
  * Class Plugin
- * @package GSPWordPressPlugin
+ * @package GreatScottPlugins
  */
 abstract class Plugin extends Singleton {
 	use Hookable;
