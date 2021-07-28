@@ -24,7 +24,7 @@
  * @copyright   Copyright (c) 2021 GreatScottPlugins. All rights reserved.
  **/
 
-namespace GreatScottPlugins\Util;
+namespace GreatScottPlugins\WordPressPlugin\Util;
 
 /**
  * Class Strings

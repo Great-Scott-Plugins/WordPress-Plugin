@@ -23,7 +23,7 @@
  * @copyright   Copyright (c) 2021 GreatScottPlugins. All rights reserved.
  **/
 
-namespace GreatScottPlugins\Plugin;
+namespace GreatScottPlugins\WordPressPlugin;
 
 /**
  * Class Plugin

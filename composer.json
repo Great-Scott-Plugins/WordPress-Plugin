@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "GreatScottPlugins\\WordpressPlugin\\": "src/"
+            "GreatScottPlugins\\WordPressPlugin\\": "src/"
         }
     },
     "minimum-stability": "stable"

@@ -23,9 +23,9 @@
  * @copyright   Copyright (c) 2021 GreatScottPlugins. All rights reserved.
  **/
 
-namespace GreatScottPlugins\Plugin;
+namespace GreatScottPlugins\WordPressPlugin;
 
-use GreatScottPlugins\Util\Strings as StringUtil;
+use GreatScottPlugins\WordPressPlugin\Util\Strings as StringUtil;
 
 /**
  * Trait Hookable
