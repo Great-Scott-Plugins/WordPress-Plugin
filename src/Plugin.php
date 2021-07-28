@@ -29,47 +29,51 @@ namespace GreatScottPlugins\Plugin;
  * Class Plugin
  * @package GreatScottPlugins
  */
-abstract class Plugin extends Singleton {
-	use Hookable;
+abstract class Plugin extends Singleton
+{
+    use Hookable;
 
-	/**
-	 * Gets the plugin directory path.
-	 *
-	 * @return string Plugin directory path.
-	 */
-	public static function dir( $path ): string {
-		if ( false === function_exists( '\plugin_dir_path' ) ) {
-			return $path;
-		}
+    /**
+     * Gets the plugin directory path.
+     *
+     * @return string Plugin directory path.
+     */
+    public static function dir($path): string
+    {
+        if (false === function_exists('\plugin_dir_path')) {
+            return $path;
+        }
 
-		return \plugin_dir_path( self::file() ) . $path;
-	}
+        return \plugin_dir_path(self::file()) . $path;
+    }
 
-	/**
-	 * Gets the plugin file path.
-	 *
-	 * @return string Plugin file path.
-	 */
-	public static function file(): string {
-		try {
-			$reflector = new \ReflectionClass( get_called_class() );
+    /**
+     * Gets the plugin file path.
+     *
+     * @return string Plugin file path.
+     */
+    public static function file(): string
+    {
+        try {
+            $reflector = new \ReflectionClass(get_called_class());
 
-			return $reflector->getFileName();
-		} catch ( \Exception $e ) {
-			return __FILE__;
-		}
-	}
+            return $reflector->getFileName();
+        } catch (\Exception $e) {
+            return __FILE__;
+        }
+    }
 
-	/**
-	 * Gets the plugin url.
-	 *
-	 * @return string Plugin url.
-	 */
-	public static function url( $path ) {
-		if ( false === function_exists( '\plugin_dir_url' ) ) {
-			return $path;
-		}
+    /**
+     * Gets the plugin url.
+     *
+     * @return string Plugin url.
+     */
+    public static function url($path): string
+    {
+        if (false === function_exists('\plugin_dir_url')) {
+            return $path;
+        }
 
-		return plugin_dir_url( self::file() );
-	}
+        return plugin_dir_url(self::file());
+    }
 }

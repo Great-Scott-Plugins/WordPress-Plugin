@@ -30,15 +30,17 @@ namespace GreatScottPlugins\Util;
  * Class Strings
  * @package GreatScottPlugins\Util
  */
-class Strings {
-	/**
-	 * Get snake_case of string.
-	 *
-	 * @param string $str Input string.
-	 *
-	 * @return string Snake case output string.
-	 */
-	public static function toSnakeCase( string $str ): string {
-		return strtolower( preg_replace( '/(?<!^)[A-Z]/', '_$0', $str ) );
-	}
+class Strings
+{
+    /**
+     * Get snake_case of string.
+     *
+     * @param string $str Input string.
+     *
+     * @return string Snake case output string.
+     */
+    public static function toSnakeCase(string $str): string
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $str));
+    }
 }
