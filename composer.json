@@ -3,7 +3,7 @@
     "description": "Library to use as basis for WordPress plugins.",
     "type": "library",
     "require": {
-        "php": ">=7.4"
+        "php": ">=5.6.20"
     },
     "license": "GPL-3.0-or-later",
     "authors": [
