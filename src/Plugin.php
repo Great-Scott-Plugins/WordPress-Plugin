@@ -38,7 +38,7 @@ abstract class Plugin extends Singleton
      *
      * @return string Plugin directory path.
      */
-    public static function dir($path): string
+    public static function dir(string $path = ''): string
     {
         if (false === function_exists('\plugin_dir_path')) {
             return $path;
@@ -68,12 +68,12 @@ abstract class Plugin extends Singleton
      *
      * @return string Plugin url.
      */
-    public static function url($path): string
+    public static function url(string $path = ''): string
     {
         if (false === function_exists('\plugin_dir_url')) {
             return $path;
         }
 
-        return plugin_dir_url(self::file());
+        return \plugin_dir_url(self::file());
     }
 }
