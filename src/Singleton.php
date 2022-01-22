@@ -45,12 +45,14 @@ abstract class Singleton
      */
     final public static function instance(...$params): Singleton
     {
-        if (!isset(static::$instances[static::class])) {
+        if (false === isset(static::$instances[static::class])) {
             static::$instances[static::class] = new static();
+
             // Call 'addDocHooks' to parse and fire object doc actions/filters.
             if (method_exists(self::$instances[static::class], 'addDocHooks')) {
                 call_user_func_array([self::$instances[static::class], 'addDocHooks'], []);
             }
+
             // Call 'init' bootstrap method if it's defined in the inheriting class.
             if (method_exists(self::$instances[static::class], 'init')) {
                 call_user_func_array([self::$instances[static::class], 'init'], func_get_args());

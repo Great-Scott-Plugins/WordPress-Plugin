@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2021 Great Scott Plugins
  *
@@ -33,12 +34,50 @@ abstract class Plugin extends Singleton
 {
     use Hookable;
 
+    static $plugin_file = '';
+
+    /**
+     * Load plugin.
+     *
+     * @param $plugin_file
+     */
+    public static function load($plugin_file)
+    {
+        // Set instance.
+        self::instance($plugin_file);
+
+        // Set
+        self::$plugin_file = $plugin_file;
+    }
+
+    /**
+     * Get plugin data.
+     *
+     * @param string $key Data key string.
+     *
+     * @return array|string Data returned, if any.
+     */
+    public static function getData($key = '')
+    {
+        if (false === function_exists('\get_plugin_data')) {
+            return '';
+        }
+
+        $data = \get_plugin_data(self::$plugin_file);
+
+        if (isset($data[$key])) {
+            return $data[$key];
+        }
+
+        return $data;
+    }
+
     /**
      * Gets the plugin directory path.
      *
      * @return string Plugin directory path.
      */
-    public static function dir($path): string
+    public static function dir($path = ''): string
     {
         if (false === function_exists('\plugin_dir_path')) {
             return $path;
@@ -54,13 +93,7 @@ abstract class Plugin extends Singleton
      */
     public static function file(): string
     {
-        try {
-            $reflector = new \ReflectionClass(get_called_class());
-
-            return $reflector->getFileName();
-        } catch (\Exception $e) {
-            return __FILE__;
-        }
+        return self::$plugin_file;
     }
 
     /**
@@ -68,12 +101,12 @@ abstract class Plugin extends Singleton
      *
      * @return string Plugin url.
      */
-    public static function url($path): string
+    public static function url($path = ''): string
     {
         if (false === function_exists('\plugin_dir_url')) {
             return $path;
         }
 
-        return plugin_dir_url(self::file());
+        return \trailingslashit(\plugin_dir_url(self::file())) . $path;
     }
 }
