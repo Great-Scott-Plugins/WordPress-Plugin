@@ -45,7 +45,7 @@ abstract class Singleton
      */
     final public static function instance(...$params): Singleton
     {
-        if (!isset(static::$instances[static::class])) {
+        if (false === isset(static::$instances[static::class])) {
             static::$instances[static::class] = new static();
 
             // Call 'addDocHooks' to parse and fire object doc actions/filters.
