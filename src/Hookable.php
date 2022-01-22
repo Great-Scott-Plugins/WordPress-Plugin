@@ -38,11 +38,8 @@ trait Hookable
      */
     public function addDocHooks()
     {
-        // Create $instances array to track class instances.
-        static $instances = [];
-
         // Get instanced class to relate the callback to.
-        $object = $instances[static::class];
+        $object = static::$instances[static::class];
 
         // Start a reflector.
         $reflector = new \ReflectionObject($object);
@@ -50,6 +47,7 @@ trait Hookable
         foreach ($reflector->getMethods() as $method) {
             $phpdoc    = $method->getDocComment();
             $arg_count = $method->getNumberOfParameters();
+
             // Handle hooks.
             if (preg_match_all(
                 '#\* @(?P<type>filter|action|shortcode)\s+(?P<name>[a-z0-9\/\=\-\._]+)(?:,\s+(?P<priority>\d+))?#',
@@ -71,6 +69,36 @@ trait Hookable
                         $callback,
                         compact('priority', 'arg_count')
                     );
+                }
+            }
+
+            // Handle base plugin functionality.
+            if (preg_match_all(
+                '#\* @(?P<type>on_activate|on_deactivate)#',
+                $phpdoc,
+                $matches,
+                PREG_SET_ORDER
+            )) {
+                foreach ($matches as $match) {
+                    $type     = $match['type'];
+                    $callback = [$this, $method->getName()];
+
+                    switch ($type) {
+                        case 'on_activate':
+                            call_user_func(
+                                ['\\register_activation_hook'],
+                                $method->getFileName(),
+                                $callback
+                            );
+                            break;
+                        case 'on_deactivate':
+                            call_user_func(
+                                ['\\register_deactivation_hook'],
+                                $method->getFileName(),
+                                $callback
+                            );
+                            break;
+                    }
                 }
             }
 
