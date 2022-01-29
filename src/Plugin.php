@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (c) 2021 Great Scott Plugins
+ * Copyright (c) 2022 Great Scott Plugins
  *
  * GNU General Public License, Free Software Foundation <https://www.gnu.org/licenses/gpl-3.0.html>
  *
@@ -21,7 +21,7 @@
  * @package     GreatScottPlugins
  * @category    Core
  * @author      GreatScottPlugins
- * @copyright   Copyright (c) 2021 GreatScottPlugins. All rights reserved.
+ * @copyright   Copyright (c) 2022 GreatScottPlugins. All rights reserved.
  **/
 
 namespace GreatScottPlugins\WordPressPlugin;
@@ -34,42 +34,12 @@ abstract class Plugin extends Singleton
 {
     use Hookable;
 
-    static $plugin_file = '';
-
     /**
      * Load plugin.
-     *
-     * @param $plugin_file
      */
-    public static function load($plugin_file)
+    public static function load()
     {
-        // Set instance.
-        self::instance($plugin_file);
-
-        // Set
-        self::$plugin_file = $plugin_file;
-    }
-
-    /**
-     * Get plugin data.
-     *
-     * @param string $key Data key string.
-     *
-     * @return array|string Data returned, if any.
-     */
-    public static function getData($key = '')
-    {
-        if (false === function_exists('\get_plugin_data')) {
-            return '';
-        }
-
-        $data = \get_plugin_data(self::$plugin_file);
-
-        if (isset($data[$key])) {
-            return $data[$key];
-        }
-
-        return $data;
+        self::instance();
     }
 
     /**
@@ -93,7 +63,16 @@ abstract class Plugin extends Singleton
      */
     public static function file(): string
     {
-        return self::$plugin_file;
+        try {
+            $reflector = new \ReflectionClass(get_called_class());
+
+            $directory = dirname($reflector->getFileName(), 2);
+            $filename = basename($directory) . '.php';
+
+            return $directory . DIRECTORY_SEPARATOR . $filename;
+        } catch (\Exception $e) {
+            return __FILE__;
+        }
     }
 
     /**
