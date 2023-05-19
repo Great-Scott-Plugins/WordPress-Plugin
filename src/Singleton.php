@@ -31,6 +31,8 @@ namespace GreatScottPlugins\WordPressPlugin;
  */
 abstract class Singleton
 {
+    use Hookable;
+
     /**
      * @var self Reference to singleton instance.
      */
