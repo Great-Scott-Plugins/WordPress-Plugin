@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2022 Great Scott Plugins
+ * Copyright (c) 2025 Great Scott Plugins
  *
  * GNU General Public License, Free Software Foundation <https://www.gnu.org/licenses/gpl-3.0.html>
  *
@@ -20,7 +20,7 @@
  * @package     GreatScottPlugins
  * @category    Core
  * @author      GreatScottPlugins
- * @copyright   Copyright (c) 2022 GreatScottPlugins. All rights reserved.
+ * @copyright   Copyright (c) 2025 GreatScottPlugins. All rights reserved.
  **/
 
 namespace GreatScottPlugins\WordPressPlugin;
