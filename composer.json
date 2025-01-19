@@ -2,7 +2,7 @@
     "name": "great-scott-plugins/wordpress-plugin",
     "description": "Library to use as basis for WordPress plugins.",
     "type": "library",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
